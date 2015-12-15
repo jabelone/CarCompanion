@@ -1,3 +1,5 @@
+Copyright (C) 2015 Jaimyn Mayer (Known as "Jabelone" online) 
+Please see below for license and usage information.
 This file is part of CarCompanion.
 
     CarCompanion is free software: you can redistribute it and/or modify
