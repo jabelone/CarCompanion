@@ -17,7 +17,7 @@ along with CarCompanion.  If not, see <http://www.gnu.org/licenses/>. */
 
 void setup() {
   pinMode(ledPin, OUTPUT);  //Set our various GPIO pins to output/input
-  pinMode(indicatorPin, OUTPUT);  //Set our various GPIO pins to output/input
+  pinMode(indicatorLightsPin, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(A3, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(lockPin, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(unlockPin, OUTPUT);  //Set our various GPIO pins to output/input

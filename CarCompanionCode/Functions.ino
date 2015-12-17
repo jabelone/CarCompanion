@@ -15,6 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with CarCompanion.  If not, see <http://www.gnu.org/licenses/>. */
 
+// Declare our variables - do not modify unless you know what you're doing!
+String btVal; //Where we store what we got via Bluetooth
+unsigned long lastHeartBeat; //For timing of heartbeat message
+unsigned long headLightsMillis; //For timing of headlights
+boolean headLightsState = false; //For keeping track of headlights state
+unsigned long brakeLightsMillis; //For timing of brakelights (currently not used)
+boolean brakeLightsState = false; //For keeping track of brakelights state (currently not used)
+unsigned long indicatorLightsMillis; //For timing of indicators
+boolean indicatorLightsState = false; //For keeping track of indicators state
+unsigned long interiorLightsMillis;  //For timing of the interior light(s) (currently not used)
+boolean interiorLightsState = false; //For keeping track of interior light(s) state (currently not used)
+boolean dontunLock = false; //A flag to check if we manually locked it
+boolean carLocked; //A flag to keep track of the lock status
+SoftwareSerial BTserial(btRX, btTX); //OK, not a variable but still needs to be declared
+
 void lockCar() {
   carLocked = true;
   if (carUnlockType == "LOW") {
@@ -41,16 +56,16 @@ void unlockCar() {
 }
 
 void flashIndicatorLightsSetter() { //When we want to flash lights, check if we should, then set the flag so it happens in Main
-  if (indicatorFlashOnLock == true) indicatorLightsMillis = millis() + indicatorFlashDelay;
+  if (indicatorFlashOnLock == true) indicatorLightsMillis = millis() + indicatorLightsFlashDelay;
 }
 
 void flashIndicatorLights() {
   if ((indicatorLightsMillis - millis()) > 0){ //If the light is meant to be on still
-    digitalWrite(indicatorPin, HIGH); //Set our indicator trigger pin to HIGH
+    digitalWrite(indicatorLightsPin, HIGH); //Set our indicator trigger pin to HIGH
     indicatorLightsState = true;
   }
   else {
-    digitalWrite(indicatorPin, LOW); //Set our indicator trigger pin to LOW
+    digitalWrite(indicatorLightsPin, LOW); //Set our indicator trigger pin to LOW
     indicatorLightsState = false;
   }
 }
