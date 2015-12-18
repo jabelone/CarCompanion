@@ -37,8 +37,8 @@ const int futurePWMusePin = 5; //Reserved for future use (last PWM pin left)
 const int brakePedalPin = 4; //A button connected to the brake pedal
 const int btTX = 3; //Define our software serial pin for Bluetooth TX
 const int btRX = 2; // Define our software serial pin for Bluetooth RX
-const int bluetoothPowerPin = A0; //A pin the bluetooth module VCC is connected to
-const int bluetoothKeyPin = A1; //A pin connected to the key pin on bluetooth module
+const int bluetoothPowerPin = A1; //A pin the bluetooth module VCC is connected to
+const int bluetoothKeyPin = A0; //A pin connected to the key pin on bluetooth module
 
 ///Timing///
 const int heartBeatTimeOut = 2000; //How long to wait after we don't get a heartbeat message before locking car. (in milliseconds)
