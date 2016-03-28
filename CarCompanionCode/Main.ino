@@ -21,10 +21,12 @@ void setup() {
   pinMode(A3, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(lockPin, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(unlockPin, OUTPUT);  //Set our various GPIO pins to output/input
+  pinMode(bluetoothPowerPin, OUTPUT); //Set the power control for bluetooth to an output
 
   //Initial Outputs
   digitalWrite(A3, LOW); //To lazy to run separate wire to GND, comment out if not needed.
-  digitalWrite(ledPin, LOW);
+  digitalWrite(ledPin, LOW);  //Make sure our LED is off
+  digitalWrite(bluetoothPowerPin, HIGH); //Make sure our bluetooth is turned on!
   
   //Serial port settings
   BTserial.begin(9600); // HC-06 default serial speed is 38400
@@ -36,7 +38,7 @@ void loop() {
   {
     digitalWrite(ledPin, HIGH); //Flash status LED to let us know we're recieving something via soft serial port
     btVal = BTserial.readStringUntil('\n'); //Used to separate commands
-    Serial.println(btVal); //Send whatever we got to the Arduino hardware serial port for debugging purposes
+    //Serial.println(btVal); //Send whatever we got to the Arduino hardware serial port for debugging (uncomment if needed)
     digitalWrite(ledPin, LOW);
   }
   
@@ -52,7 +54,7 @@ void loop() {
     dontunLock = false; //Set our flag so it may auto unlock again.
     unlockCar(); //Unlock car
   }
-  else if (btVal != "") Serial.println("Error: Unrecognised command received from phone!"); //If it's anything else we aren't expecting it!
+  else if (btVal != "") Serial.println("Error: Unrecognised command received from phone!"); //If it's anything else, we aren't expecting it!
   btVal = ""; //Reset the received command before the next loop.
   
   if (millis() - lastHeartBeat > heartBeatTimeOut) {
@@ -60,11 +62,13 @@ void loop() {
   }
 
   //These functions check if our lights should be on (usually to be flashed)
+  //This is a complete rewrite of the logic so it probably doesn't work yet as it's untested
   flashIndicatorLights();
   flashHeadLights();
   flashbrakeLights();
   
-  /*//Read from hardware serial port and send to HC-06 for debugging purposes (disabled by default)
+  //Read from hardware serial port and send to bluetooth for debugging purposes (uncomment if needed)
+  /*
   if (Serial.available())
   {
     digitalWrite(ledPin, HIGH); //Set the received somethiing via Bluetooth LED to on.

@@ -26,17 +26,18 @@ Manual lock/unlock from phone
 Indicators and lights flash on lock/unlock
 
 Future feature list:
+Better configurability with lights/delays
 Cruise control
 Rain sensing wipers
 Remote start
 Dusk sensing lights
 "brake tap button" (for flashing tailgaters without tapping brakes)
 Manual lock/unlock button on dash/door and maybe one hidden outside of car
-Unlock twice, if the car happns to unlock when you're holding the handle up, unlock again so it actually unlocks.
+Unlock twice, if the car happens to unlock when you're holding the handle up, unlock again so it actually unlocks.
 
 The official website of sorts is the github page at https://github.com/jabelone/CarCompanion
 
 The Config tab contains all of the user configurable options.
-The Functions tab has all of the functions declared. (may be split when many more are added)
+The Functions tab is where all the "common" functions are declared.
 The Main tab is where the main code is (setup and loops functions etc)
 */

@@ -4,15 +4,18 @@ An arduino car companion that can add multiple features to older cars normally o
 
 You can find all the arduino code in the folder "CarCompanion".  The companion app is created using MIT app inventor and can be found in the folder "CarCompanionApp".  If you want to make changes, sign into MIT app inventor http://ai2.appinventor.mit.edu/ and open the file called "CarCompanionApp.ai".
 
-Basic feature list so far:
-Auto lock/unlock when phone in/out of range
-Manual lock/unlock from phone
-Blinkers (indicators) on lock/unlock
 
-Planned feature list:
-Cruise control
-Rain sensing wipers
-Remote start
-Dusk sensing lights
-"Break tap button" (for flashing tailgaters without tapping breaks)
-Manual lock/unlock button on dash/door and maybe one hidden outside of car
+Feature that have been implemented so far:
+
+* Auto lock/unlock when phone in/out of range
+* Manual lock/unlock from phone
+* Blinkers (indicators) flash on lock/unlock
+* "Break tap button" (for flashing tailgaters without tapping breaks)
+
+Planned feature list (rough order of priority):
+
+* Manual lock/unlock button internally
+* Dusk sensing lights
+* Rain sensing wipers
+* Remote/keyless start
+* Cruise control (low priority)

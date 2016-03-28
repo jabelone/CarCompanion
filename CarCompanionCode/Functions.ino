@@ -28,16 +28,17 @@ unsigned long interiorLightsMillis;  //For timing of the interior light(s) (curr
 boolean interiorLightsState = false; //For keeping track of interior light(s) state (currently not used)
 boolean dontunLock = false; //A flag to check if we manually locked it
 boolean carLocked; //A flag to keep track of the lock status
-SoftwareSerial BTserial(btRX, btTX); //OK, not a variable but still needs to be declared
+SoftwareSerial BTserial(btRX, btTX); //Not a variable but still needs to be declared
 
 void lockCar() {
   carLocked = true;
   if (carUnlockType == "LOW") {
-    digitalWrite(lockPin, LOW); //"Connect" the lock wire by pulling it LOW
     digitalWrite(unlockPin, HIGH); //"Disconnect" the unlock wire by pulling it HIGH
+    digitalWrite(lockPin, LOW); //"Connect" the lock wire by pulling it LOW
   }
   if (carUnlockType == "HIGH") {
     digitalWrite(unlockPin, LOW); //"Disconnect" the unlock wire by pulling it LOW
+    digitalWrite(lockPin, HIGH); //"Connect" the lock wire by pulling it LOW
   }
   flashIndicatorLightsSetter();
 }
@@ -49,8 +50,8 @@ void unlockCar() {
     digitalWrite(unlockPin, LOW); //"Connect" the unlock wire by pulling it LOW
   }
   else if (carUnlockType == "HIGH") {
-    digitalWrite(lockPin, LOW); //"Connect" the lock wire by pulling it LOW
     digitalWrite(unlockPin, HIGH); //"Disconnect" the unlock wire by pulling it HIGH
+    digitalWrite(lockPin, LOW); //"Connect" the lock wire by pulling it LOW
   }
   flashIndicatorLightsSetter();
 }
@@ -85,17 +86,11 @@ void flashHeadLights() {
   }
 }
 
-void flashbrakeLightsSetter() { //When we want to flash lights, check if we should, then set the flag so it happens in Main
-  if (headLightsFlashOnLock == true) headLightsMillis = millis() + headLightsFlashDelay;
-}
-
-void flashbrakeLights() {
-  if ((brakeLightsMillis - millis()) > 0){ //If the light is meant to be on still
+void flashBrakeLights(boolean lightStatus) {
+  if (lightStatus){ //If we want the light on
     digitalWrite(brakeLightsPin, HIGH); //Set our light trigger pin to HIGH
-   brakeLightsState = true;
   }
   else {
     digitalWrite(brakeLightsPin, LOW); //Set our light trigger pin to LOW
-    brakeLightsState = false;
   }
 }
