@@ -23,13 +23,13 @@ void setup() {
   pinMode(unlockPin, OUTPUT);  //Set our various GPIO pins to output/input
   pinMode(bluetoothPowerPin, OUTPUT); //Set the power control for bluetooth to an output
   pinMode(brakeLightsPin, OUTPUT);
-  pinMode(breakTapButton, OUTPUT);
+  pinMode(
 
   //Initial Outputs
   digitalWrite(A3, LOW); //To lazy to run separate wire to GND, comment out if not needed.
   digitalWrite(ledPin, LOW);  //Make sure our LED is off
   digitalWrite(bluetoothPowerPin, HIGH); //Make sure our bluetooth is turned on!
-
+  
   //Serial port settings
   BTserial.begin(9600); // HC-06 default serial speed is 38400
   Serial.begin(38400); //Enable our hardware serial ports (for debugging etc)
@@ -43,7 +43,7 @@ void loop() {
     //Serial.println(btVal); //Send whatever we got to the Arduino hardware serial port for debugging (uncomment if needed)
     digitalWrite(ledPin, LOW);
   }
-
+  
   if (btVal == "Heartbeat") {
     lastHeartBeat = millis(); //If it's a heartbeat message, update the time we last received one.
     if (dontunLock == false) unlockCar();  //If we haven't manually locked it, unlock it.
@@ -58,46 +58,19 @@ void loop() {
   }
   else if (btVal != "") Serial.println("Error: Unrecognised command received from phone!"); //If it's anything else, we aren't expecting it!
   btVal = ""; //Reset the received command before the next loop.
-
+  
   if (millis() - lastHeartBeat > heartBeatTimeOut) {
     lockCar();
   }
 
-  if (digitalRead(breakTapButton) == LOW) {
-    if (buttonLastTime + debounceBrakeDelay >= millis()) {
-      buttonLastTime = millis();
-      if (digitalRead(breakTapButton) == LOW) {
-        buttonState = true;
-      }
-    }
-  }
-  else buttonState = false;
-
-  if (buttonState) digitalWrite(brakeLightsPin, HIGH);  //If our button has been debounced and it's down turn lights on
-  else digitalWrite(brakeLightsPin, LOW);  //If our button is not down turn lights off
-
-  //These code bits check if our lights should be on (usually to be flashed)
+  //These functions check if our lights should be on (usually to be flashed)
   //This is a complete rewrite of the logic so it probably doesn't work yet as it's untested
-
-  if ((indicatorLightsMillis - millis()) > 0) { //If the light is meant to be on still
-    digitalWrite(indicatorLightsPin, HIGH); //Set our indicator trigger pin to HIGH
-    indicatorLightsState = true;
-  }
-  else {
-    digitalWrite(indicatorLightsPin, LOW); //Set our indicator trigger pin to LOW
-    indicatorLightsState = false;
-  }
+  flashIndicatorLights();
+  flashHeadLights();
+  flashbrakeLights();
 
 
-  if ((headLightsMillis - millis()) > 0) { //If the light is meant to be on still
-    digitalWrite(headLightsPin, HIGH); //Set our indicator trigger pin to HIGH
-    headLightsState = true;
-  }
-  else {
-    digitalWrite(headLightsPin, LOW); //Set our light trigger pin to LOW
-    headLightsState = false;
-  }
-
+  
   //Read from hardware serial port and send to bluetooth for debugging purposes (uncomment if needed)
   /*
   if (Serial.available())
@@ -105,5 +78,5 @@ void loop() {
     digitalWrite(ledPin, HIGH); //Set the received somethiing via Bluetooth LED to on.
     BTserial.write(Serial.read()); //Send to the bluetooth serial port whatever we got.
     digitalWrite(ledPin, LOW); //Set the received somethiing via Bluetooth LED back to off.
-  }*/
+  }*/ 
 }

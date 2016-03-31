@@ -1,6 +1,6 @@
 /*This file is part of CarCompanion.
 
-Copyright (C) 2015 Jaimyn Mayer (Known as "Jabelone" online)
+Copyright (C) 2016 Jaimyn Mayer (Known as "Jabelone" online)
 
 CarCompanion is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,24 +16,33 @@ You should have received a copy of the GNU General Public License
 along with CarCompanion.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+* Thank-you for taking the time to look through my project,
+* as a way of saying thank-you, I say this: 
+* never gonna give you up, never gonna let you down,
+* never gonna run around and desert you. Never gonna make you cry,
+* never gonna say goodbye. Never gonna tell a lie and hurt you.
+* ;)
+*/
+
 /*
-This is an arduino based "car companion" that can add multiple features to older cars normally only found on new ones! 
+This is an arduino based "car companion" that can add multiple features to 
+older cars normally only found on new ones.
 Documentation coming soon.
 
-Basic feature list so far:
+Features that have been implemented so far:
 Auto lock/unlock when phone in/out of range
 Manual lock/unlock from phone
-Indicators and lights flash on lock/unlock
+Blinkers (indicators) flash on lock/unlock
+"Break tap button" (for flashing tailgaters without tapping breaks)
 
-Future feature list:
-Better configurability with lights/delays
-Cruise control
-Rain sensing wipers
-Remote start
+Planned feature list (rough order of priority):
+Manual lock/unlock button internally
 Dusk sensing lights
-"brake tap button" (for flashing tailgaters without tapping brakes)
-Manual lock/unlock button on dash/door and maybe one hidden outside of car
+Rain sensing wipers
+Remote/keyless start
 Unlock twice, if the car happens to unlock when you're holding the handle up, unlock again so it actually unlocks.
+Cruise control (low priority)
 
 The official website of sorts is the github page at https://github.com/jabelone/CarCompanion
 

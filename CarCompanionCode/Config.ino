@@ -1,6 +1,6 @@
 /*This file is part of CarCompanion.
 
-Copyright (C) 2015 Jaimyn Mayer (Known as "Jabelone" online)
+Copyright (C) 2016 Jaimyn Mayer (Known as "Jabelone" online)
 
 CarCompanion is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ along with CarCompanion.  If not, see <http://www.gnu.org/licenses/>. */
 //Pin Definitions//
 const int ledPin =  13; //Status LED
 const int D12 = 12; //Reserved for future use (button input)
-//Headlights, brakelights and indicators are connected to PWM pins.  On newer cars you may be able to control the brightness once it's implemented.
+//Headlights, brakelights and indicators are connected to PWM pins.  On cars that use SSRs or some sort of FET you may be able to control the brightness once it's implemented.
 const int headLightsPin = 11; //The pin that is connected to the headlights relay.
 const int brakeLightsPin = 10; //The pin that is connected to the brakelights relay.
 const int indicatorLightsPin = 9; //Pin that controls transistor connected to indicators.
@@ -38,6 +38,7 @@ const int D5 = 5; //Reserved for future use (last PWM pin left)
 const int D4 = 4; //Reserved for future use (button input)
 const int btTX = 3; //Define our software serial pin for Bluetooth TX
 const int btRX = 2; // Define our software serial pin for Bluetooth RX
+const int breakTapButton = A7; // Define our break tap button input pin
 const int bluetoothPowerPin = A1; //A pin the bluetooth module VCC is connected to
 const int bluetoothKeyPin = A0; //A pin connected to the key pin on bluetooth module
 
